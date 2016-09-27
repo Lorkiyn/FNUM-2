@@ -9,22 +9,22 @@ public class GAUSS01 {
 	private static double[] x = null;
 
 	public static void main(String[] args) {
-		data[0][0] = 2;
+		data[0][0] = 1;
 		data[0][1] = 1;
-		data[0][2] = 3;
-		result[0] = 73;
+		data[0][2] = 1;
+		result[0] = 6;
 
-		data[1][0] = 6;
-		data[1][1] = 5;
-		data[1][2] = 4;
-		result[1] = 168;
+		data[1][0] = 2;
+		data[1][1] = 2;
+		data[1][2] = -4;
+		result[1] = -6;
 
-		data[2][0] = 4;
-		data[2][1] = 6;
-		data[2][2] = 7;
-		result[2] = 209;
+		data[2][0] = 3;
+		data[2][1] = 1;
+		data[2][2] = -1;
+		result[2] = 2;
 
-//		init();
+		//		init();
 		menu();
 
 	}
@@ -74,34 +74,46 @@ public class GAUSS01 {
 		}
 
 	}
-	
+
 	private static void calc() {
 		nulln();
 		rücksubstitution();
 	}
-	
+
 	private static void nulln() {
 		for(int i = 0; i < data.length-1; i++) {
-			
+
 			for(int j = i + 1; j < data.length; j++) {
-				
 				double q = 0;
-				if(data[i][i] != 0) {
+				double[] temp = null;
+				double tempRes = 0;
+				
+				if(data[i][i] == 0) {
+					temp = data[i];
+					data[i] = data[i + 1];
+					data[i + 1] = temp;
 					
+					tempRes = result[i];
+					result[i] = result[i + 1];
+					result[i + 1] = tempRes;
+				}
+
+				if(data[i][i] != 0) {
 					q = -data[j][i] / data[i][i];
 					
 					for(int k = i; k < data.length; k++) {
 						data[j][k] = data[j][k] + data[i][k] * q;
 						
 					}
+					
 				}
-				
+
 				result[j] = result[j] + result[i] * q;
-				
+
 			}
-			
+
 		}
-		
+
 	}
 
 	private static void rücksubstitution() {
