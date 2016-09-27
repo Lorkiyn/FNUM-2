@@ -9,22 +9,22 @@ public class GAUSS01 {
 	private static double[] x = null;
 
 	public static void main(String[] args) {
-		data[0][0] = 1;
-		data[0][1] = 1;
-		data[0][2] = 1;
-		result[0] = 6;
+		//		data[0][0] = 1;
+		//		data[0][1] = 1;
+		//		data[0][2] = 1;
+		//		result[0] = 6;
+		//
+		//		data[1][0] = 2;
+		//		data[1][1] = 2;
+		//		data[1][2] = -4;
+		//		result[1] = -6;
+		//
+		//		data[2][0] = 3;
+		//		data[2][1] = 1;
+		//		data[2][2] = -1;
+		//		result[2] = 2;
 
-		data[1][0] = 2;
-		data[1][1] = 2;
-		data[1][2] = -4;
-		result[1] = -6;
-
-		data[2][0] = 3;
-		data[2][1] = 1;
-		data[2][2] = -1;
-		result[2] = 2;
-
-		//		init();
+		init();
 		menu();
 
 	}
@@ -77,7 +77,30 @@ public class GAUSS01 {
 
 	private static void calc() {
 		nulln();
-		rücksubstitution();
+		if(checkForSub()) {
+			rücksubstitution();
+			
+		}
+	}
+
+	private static boolean checkForSub() {
+		double value = 0;
+		for(int i = 0; i < data.length; i++) {
+			value += data[data.length-1][i];
+
+		}
+		
+		if(value == 0 && (result[result.length-1] > 0 || result[result.length-1] < 0)) {
+			System.out.println("BRUDAH MAN WAS FÜR SHICE MATRIX HAST DU GEMACHT DIE HAT VOLL KAK KEINE LÖSUNG!");
+			return false;
+		}
+		
+		if(value == 0 && result[result.length-1] == 0) {
+			System.out.println("BRUDAH MAN WAS DAS WIDA FÜR SHICE MAN DAS HAT VOLL UNENDLICH LÖSUNG MAAN");
+			return false;
+		}
+
+		return true;
 	}
 
 	private static void nulln() {
@@ -87,12 +110,12 @@ public class GAUSS01 {
 				double q = 0;
 				double[] temp = null;
 				double tempRes = 0;
-				
+
 				if(data[i][i] == 0) {
 					temp = data[i];
 					data[i] = data[i + 1];
 					data[i + 1] = temp;
-					
+
 					tempRes = result[i];
 					result[i] = result[i + 1];
 					result[i + 1] = tempRes;
@@ -100,12 +123,12 @@ public class GAUSS01 {
 
 				if(data[i][i] != 0) {
 					q = -data[j][i] / data[i][i];
-					
+
 					for(int k = i; k < data.length; k++) {
 						data[j][k] = data[j][k] + data[i][k] * q;
-						
+
 					}
-					
+
 				}
 
 				result[j] = result[j] + result[i] * q;
