@@ -83,11 +83,13 @@ public class GAUSS01 {
 		}
 	}
 
+	/**
+	 * @return boolean 
+	 * */
 	private static boolean checkForSub() {
 		double value = 0;
 		for(int i = 0; i < data.length; i++) {
 			value += data[data.length-1][i];
-
 		}
 		
 		if(value == 0 && (result[result.length-1] > 0 || result[result.length-1] < 0)) {
