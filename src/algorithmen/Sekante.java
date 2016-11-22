@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Sekante {
 
-	private static double x0 = 0;
-	private static double x1 = 0;
+	private static double x0 = -1;
+	private static double x1 = 2;
 	private static int count = 0;
 
 	private static double[] values = null;
@@ -34,6 +34,7 @@ public class Sekante {
 			xStar = x0 - f(x0) * ( (x0 - x1) / (f(x0) - f(x1) ));
 			
 			x1 = xStar;
+//			System.out.println(x1);
 			count++;
 			
 		} while(Math.abs(f(xStar)) > 0.0001);
@@ -43,7 +44,8 @@ public class Sekante {
 	}
 
 	public static double f(double x) {
-		double temp = (Math.pow(x, 3) - 2 * x - 5);
+//		double temp = (Math.pow(x, 3) - 2 * x - 5);
+		double temp = Math.pow(x, 3) + 2 * Math.pow(x, 2) - x -7;
 //		double newTemp = Math.pow(a, b)
 		return temp;
 	}
