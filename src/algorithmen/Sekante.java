@@ -29,12 +29,11 @@ public class Sekante {
 		sc.close();
 	}
 
-	private static void calculate() {	
+	private static void calculate() {
 		do {
 			xStar = x0 - f(x0) * ( (x0 - x1) / (f(x0) - f(x1) ));
 			
 			x1 = xStar;
-//			System.out.println(x1);
 			count++;
 			
 		} while(Math.abs(f(xStar)) > 0.0001);
